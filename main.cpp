@@ -4,8 +4,8 @@
 #include "RayTracer.h"
 
 // constants
-const size_t SCREEN_WIDTH = 1920;
-const size_t SCREEN_HEIGHT = 1080;
+const size_t SCREEN_WIDTH = 800;
+const size_t SCREEN_HEIGHT = 600;
 
 int main(int argc, char *argv[]) {
   // Initialize SDL
@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 
   // Create Window
   SDL_Window *window = SDL_CreateWindow(
-      "SDL2 Demo",            // window title
+      "SDL2 RayTracer",       // window title
       SDL_WINDOWPOS_UNDEFINED,// initial x position
       SDL_WINDOWPOS_UNDEFINED,// initial y position
       SCREEN_WIDTH,           // width, in pixels
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
       SDL_WINDOW_SHOWN        // flags
   );
 
-  if (window == NULL) {
+  if (window == nullptr) {
     std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
     SDL_Quit();
     return EXIT_FAILURE;
@@ -58,12 +58,13 @@ int main(int argc, char *argv[]) {
     // Prepare to update texture
     void *pixels;
     int pitch;
-    SDL_LockTexture(texture, NULL, &pixels, &pitch);
+    SDL_LockTexture(texture, nullptr, &pixels, &pitch);
 
     engine.render(texture, SCREEN_HEIGHT, SCREEN_WIDTH, pitch, pixels);
 
     Uint32 end_time = SDL_GetTicks();
     Uint32 render_time = end_time - start_time;
+
     // fps
     Uint32 fps = 1000 / render_time;
     std::cout << "FPS: " << fps << std::endl;
@@ -72,7 +73,7 @@ int main(int argc, char *argv[]) {
     SDL_UnlockTexture(texture);
 
     // Copy the texture to the renderer
-    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
 
     // Update screen
     SDL_RenderPresent(renderer);

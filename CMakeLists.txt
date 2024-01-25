@@ -7,6 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(RayTracing main.cpp
         RayTracer.cpp
         RayTracer.h
+        Vector3.h
+        Ray.h
+        Camera.h
+        Vector3.cpp
+        Hittable.h
+        Sphere.h
+        HittableList.h
 )
 
 cmake_minimum_required(VERSION 3.10)
