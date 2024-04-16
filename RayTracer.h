@@ -32,6 +32,12 @@ class RayTracer {
   Vector3 trace(const Ray &ray, const Hittable& world, int depth);
   // render method return an array of pixels
   void render(SDL_Texture *texture, size_t SCREEN_HEIGHT, size_t SCREEN_WIDTH, Uint32 pitch, void *pixels);
+
+    // movement
+    void move_forward();
+    void move_backward();
+    void move_left();
+    void move_right();
 };
 
 #endif //RAYTRACING__RAYTRACER_H_

@@ -86,3 +86,20 @@ void RayTracer::render(SDL_Texture *texture, size_t SCREEN_HEIGHT, size_t SCREEN
   // set the texture
   SDL_UpdateTexture(texture, nullptr, pixels, pitch);
 }
+
+// movement
+void RayTracer::move_forward() {
+  camera.position -= camera.front * camera.speed;
+}
+
+void RayTracer::move_backward() {
+  camera.position += camera.front * camera.speed;
+}
+
+void RayTracer::move_left() {
+  camera.position -= camera.right * camera.speed;
+}
+
+void RayTracer::move_right() {
+  camera.position += camera.right * camera.speed;
+}

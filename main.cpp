@@ -4,8 +4,8 @@
 #include "RayTracer.h"
 
 // constants
-const size_t SCREEN_WIDTH = 800;
-const size_t SCREEN_HEIGHT = 600;
+const size_t SCREEN_WIDTH = 400;
+const size_t SCREEN_HEIGHT = 300;
 
 int main(int argc, char *argv[]) {
   // Initialize SDL
@@ -45,10 +45,39 @@ int main(int argc, char *argv[]) {
   bool running = true;
   SDL_Event event;
 
+  // running loop
   while (running) {
     while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
-        running = false;
+      // switch to handle events
+switch (event.type) {
+        case SDL_QUIT:
+          running = false;
+          break;
+        // handle key events
+        case SDL_KEYDOWN:
+          switch (event.key.keysym.sym) {
+            case SDLK_ESCAPE:
+              running = false;
+              break;
+            // handle wasd keys
+            case SDLK_w:
+              engine.move_forward();
+              break;
+            case SDLK_s:
+                engine.move_backward();
+                break;
+            case SDLK_a:
+                engine.move_left();
+                break;
+            case SDLK_d:
+                engine.move_right();
+                break;
+            default:
+              break;
+          }
+          break;
+        default:
+          break;
       }
     }
 
