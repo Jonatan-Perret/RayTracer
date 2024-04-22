@@ -26,6 +26,7 @@ class Vector3 {
   double lengtheSquared() const;
   Vector3 &normalize();
   Vector3 normalized() const;
+  static Vector3 randomUnitVector();
   Vector3 rotate(double angle, const Vector3 &axis);
 };
 

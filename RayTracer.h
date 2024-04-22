@@ -23,6 +23,7 @@ class RayTracer {
   std::vector<Cube> cubes;
   std::vector<Light> lights;
   Camera camera;
+  unsigned maxDepth = 1;
 
   // rendering
   SDL_Texture *texture;
@@ -35,6 +36,7 @@ class RayTracer {
   Vector3 trace(const Ray &ray, const Hittable &world, int depth);
   // render method return an array of pixels
   void render(SDL_Texture *texture, size_t SCREEN_HEIGHT, size_t SCREEN_WIDTH, Uint32 pitch, void *pixels);
+  bool is_in_shadow(const Vector3 &point, const Hittable &world);
 
   // movement
   void move_forward();
@@ -43,6 +45,9 @@ class RayTracer {
   void move_right();
   void rotate_left();
   void rotate_right();
+
+  void setMaxDepth(unsigned maxDepth);
+
 };
 
 #endif //RAYTRACING__RAYTRACER_H_

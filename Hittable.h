@@ -9,6 +9,7 @@ class HitRecord {
   Vector3 point, normal;
   double t;
   bool frontFace;
+  Vector3 color;
 
   HitRecord() : point(Vector3()), normal(Vector3()), t(0) {}
   HitRecord(const Vector3 &point, const Vector3 &normal, double t, bool frontFace)

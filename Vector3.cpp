@@ -101,6 +101,17 @@ Vector3 Vector3::normalized() const {
   return *this;
 }
 
+Vector3 Vector3::randomUnitVector() {
+  // generate a random point in the unit sphere
+  double x, y, z;
+  do {
+    x = 2.0 * rand() / RAND_MAX - 1.0;
+    y = 2.0 * rand() / RAND_MAX - 1.0;
+    z = 2.0 * rand() / RAND_MAX - 1.0;
+  } while (x * x + y * y + z * z >= 1.0);
+  return Vector3(x, y, z).normalized();
+}
+
 Vector3 Vector3::rotate(double angle, const Vector3 &axis) {
   double s = std::sin(angle);
   double c = std::cos(angle);

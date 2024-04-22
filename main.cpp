@@ -82,6 +82,16 @@ int main() {
           switch (event.key.keysym.sym) {
             case SDLK_ESCAPE:running = false;
               break;
+            case SDLK_1:engine.setMaxDepth(1);
+              break;
+            case SDLK_2:engine.setMaxDepth(2);
+                break;
+            case SDLK_3:engine.setMaxDepth(3);
+                break;
+            case SDLK_4:engine.setMaxDepth(4);
+                break;
+            case SDLK_5:engine.setMaxDepth(5);
+                break;
             default:break;
           }
           break;
