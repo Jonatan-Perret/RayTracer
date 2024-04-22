@@ -14,6 +14,7 @@ add_executable(RayTracing main.cpp
         Hittable.h
         Sphere.h
         HittableList.h
+        Cube.h
 )
 
 cmake_minimum_required(VERSION 3.10)

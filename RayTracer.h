@@ -5,6 +5,7 @@
 #include "Ray.h"
 #include "Camera.h"
 #include "Sphere.h"
+#include "Cube.h"
 
 // Light.h
 class Light {
@@ -19,6 +20,7 @@ class Light {
 class RayTracer {
  private:
   std::vector<Sphere> spheres;
+  std::vector<Cube> cubes;
   std::vector<Light> lights;
   Camera camera;
 
@@ -27,17 +29,20 @@ class RayTracer {
  public:
   RayTracer();
   void addSphere(const Sphere &sphere);
+  void addCube(const Cube &cube);
   void addLight(const Light &light);
   void setCamera(const Camera &camera);
-  Vector3 trace(const Ray &ray, const Hittable& world, int depth);
+  Vector3 trace(const Ray &ray, const Hittable &world, int depth);
   // render method return an array of pixels
   void render(SDL_Texture *texture, size_t SCREEN_HEIGHT, size_t SCREEN_WIDTH, Uint32 pitch, void *pixels);
 
-    // movement
-    void move_forward();
-    void move_backward();
-    void move_left();
-    void move_right();
+  // movement
+  void move_forward();
+  void move_backward();
+  void move_left();
+  void move_right();
+  void rotate_left();
+  void rotate_right();
 };
 
 #endif //RAYTRACING__RAYTRACER_H_

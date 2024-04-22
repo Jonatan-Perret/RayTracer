@@ -7,8 +7,8 @@
 const size_t SCREEN_WIDTH = 400;
 const size_t SCREEN_HEIGHT = 300;
 
-void handle_wasd_keys(SDL_Event &event, RayTracer &engine) {
-  const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+void handle_wasd_keys(RayTracer &engine) {
+  const Uint8 *keystate = SDL_GetKeyboardState(nullptr);
   if (keystate[SDL_SCANCODE_W]) {
     engine.move_forward();
   }
@@ -23,7 +23,17 @@ void handle_wasd_keys(SDL_Event &event, RayTracer &engine) {
   }
 }
 
-int main(int argc, char *argv[]) {
+void handle_qe_keys(RayTracer &engine) {
+  const Uint8 *keystate = SDL_GetKeyboardState(nullptr);
+  if (keystate[SDL_SCANCODE_Q]) {
+    engine.rotate_left();
+  }
+  if (keystate[SDL_SCANCODE_E]) {
+    engine.rotate_right();
+  }
+}
+
+int main() {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
@@ -77,7 +87,8 @@ int main(int argc, char *argv[]) {
           break;
         default:break;
       }
-      handle_wasd_keys(event, engine);
+      handle_wasd_keys(engine);
+      handle_qe_keys(engine);
     }
 
 

@@ -19,11 +19,14 @@ class Vector3 {
   Vector3 operator/=(double scalar);
   bool operator==(const Vector3 &v) const;
   bool operator!=(const Vector3 &v) const;
+  double &operator[](int i);
+  const double &operator[](int i) const;
   Vector3 cross(const Vector3 &v) const;
   double length() const;
   double lengtheSquared() const;
-  Vector3 &normalizeThis();
+  Vector3 &normalize();
   Vector3 normalized() const;
+  Vector3 rotate(double angle, const Vector3 &axis);
 };
 
 inline Vector3 unit_vector(Vector3 v) {

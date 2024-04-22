@@ -11,13 +11,13 @@ class Sphere : public Hittable {
   double radius;
   Sphere() : center(Vector3()), radius(0) {}
   Sphere(const Vector3 &center, double radius) : center(center), radius(radius) {}
-  bool hit(const Ray &ray, double tMin, double tMax, HitRecord &record) const override{
+  bool hit(const Ray &ray, double tMin, double tMax, HitRecord &record) const override {
     Vector3 oc = ray.origin - center;
     auto a = ray.direction.lengtheSquared();
     auto half_b = dot(oc, ray.direction);
-    auto c = oc.lengtheSquared() - radius*radius;
+    auto c = oc.lengtheSquared() - radius * radius;
 
-    auto discriminant = half_b*half_b - a*c;
+    auto discriminant = half_b * half_b - a * c;
     if (discriminant < 0) return false;
     auto sqrtd = sqrt(discriminant);
 
