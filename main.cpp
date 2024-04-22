@@ -7,6 +7,22 @@
 const size_t SCREEN_WIDTH = 400;
 const size_t SCREEN_HEIGHT = 300;
 
+void handle_wasd_keys(SDL_Event &event, RayTracer &engine) {
+  const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+  if (keystate[SDL_SCANCODE_W]) {
+    engine.move_forward();
+  }
+  if (keystate[SDL_SCANCODE_S]) {
+    engine.move_backward();
+  }
+  if (keystate[SDL_SCANCODE_A]) {
+    engine.move_left();
+  }
+  if (keystate[SDL_SCANCODE_D]) {
+    engine.move_right();
+  }
+}
+
 int main(int argc, char *argv[]) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -49,37 +65,21 @@ int main(int argc, char *argv[]) {
   while (running) {
     while (SDL_PollEvent(&event)) {
       // switch to handle events
-switch (event.type) {
-        case SDL_QUIT:
-          running = false;
+      switch (event.type) {
+        case SDL_QUIT:running = false;
           break;
-        // handle key events
         case SDL_KEYDOWN:
           switch (event.key.keysym.sym) {
-            case SDLK_ESCAPE:
-              running = false;
+            case SDLK_ESCAPE:running = false;
               break;
-            // handle wasd keys
-            case SDLK_w:
-              engine.move_forward();
-              break;
-            case SDLK_s:
-                engine.move_backward();
-                break;
-            case SDLK_a:
-                engine.move_left();
-                break;
-            case SDLK_d:
-                engine.move_right();
-                break;
-            default:
-              break;
+            default:break;
           }
           break;
-        default:
-          break;
+        default:break;
       }
+      handle_wasd_keys(event, engine);
     }
+
 
     // timer for rendering time
     Uint32 start_time = SDL_GetTicks();
@@ -96,6 +96,8 @@ switch (event.type) {
 
     // fps
     Uint32 fps = 1000 / render_time;
+    // clear the console
+    system("clear");
     std::cout << "FPS: " << fps << std::endl;
 
     // Unlock the texture
